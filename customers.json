@@ -1,0 +1,26 @@
+[
+    {
+        "accountNumber": 123456,
+        "firstName": "George",
+        "lastName": "Washington",
+        "birthDate": "1982-02-14",
+        "email": "georgio.uno@gmail.com",
+        "cell": "816-555-1212",
+        "street": "1600 Washington Ave.",
+        "city": "Mount Vernon",
+        "state": "Virginia",
+        "zip": "12345"
+    },
+    {
+        "accountNumber": 789012,
+        "firstName": "John",
+        "lastName": "Adams",
+        "birthDate": "1962-03-14",
+        "email": "im.not.jonnie@gmail.com",
+        "cell": "816-555-1212",
+        "street": "1600 Adams St.",
+        "city": "Braintree",
+        "state": "Massachusetts",
+        "zip": "12345"       
+    }
+]

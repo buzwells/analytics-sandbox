@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+
+        h1 {
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #ddd;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 51px;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* Scrollable contents if viewport is shorter than content. */
+            border-right: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse bg-primary fixed-top">
+        <!-- Navbar content -->
+        <a href="/" class="navbar-brand">Sandbox</a>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <nav class="col-sm-3 col-md-2 bg-faded sidebar">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Billing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">History</a>
+                    </li>
+                </ul>
+            </nav>
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Profile</h1>
+                <form>
+                    <div class="form-group">
+                        <label for="accountNumber">Account number</label>
+                        <input type="text" class="form-control" id="accountNumber" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Birth date</label>
+                        <input type="date" class="form-control" id="birthDate" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email</label>
+                        <input type="email" class="form-control" id="customerEmail" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Cell number</label>
+                        <input type="tel" class="form-control" id="customerPhone" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerStreet">Street</label>
+                        <input type="text" class="form-control" id="customerStreet" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerCity">City</label>
+                        <input type="text" class="form-control" id="customerCity" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" id="customerState">
+                            <option selected>State</option>
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="Massachusetts">Massachusetts</option>
+                            <option value="Virginia">Virginia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerZip">Zip</label>
+                        <input type="number" class="form-control" id="customerZip" placeholder="">
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+    <script>
+        (function () {
+            var acct = 0,
+                hash;
+            var q = document.URL.split('?')[1];
+            if (q != undefined) {
+                q = q.split('&');
+                for (var i = 0; i < q.length; i++) {
+                    hash = q[i].split('=');
+                    acct = hash[1];
+                }
+                $.getJSON("customers.json")
+                    .done(function (data) {
+                        $.each(data, function (i, item) {
+                            if(item.accountNumber == acct) {
+                                $("#accountNumber").attr("value", item.accountNumber);
+                                $("#firstName").attr("value", item.firstName);                                
+                                $("#lastName").attr("value", item.lastName);                                
+                                $("#birthDate").attr("value", item.birthDate);                                
+                                $("#customerEmail").attr("value", item.email);
+                                $("#customerPhone").attr("value", item.cell);
+                                $("#customerStreet").attr("value", item.street);
+                                $("#customerCity").attr("value", item.city);
+                                $("#customerState").val(item.state);
+                                //$("#customerState").selectmenu('refresh');
+                                $("#customerZip").attr("value", item.zip);
+                            }
+                        });
+                    });
+            }
+        })();
+    </script>
+</body>
+
+</html>
