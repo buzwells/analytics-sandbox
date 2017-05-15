@@ -55,7 +55,7 @@
 
   <script>
     (function () {
-      var custInfo = window.location.protocol + "//" + window.location.host + "/customer-info";
+      var custInfo = window.location + "/customer-info";
       $.getJSON("customers.json")
         .done(function (data) {
           $.each(data, function (i, item) {
