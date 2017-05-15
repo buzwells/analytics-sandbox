@@ -55,11 +55,12 @@
 
   <script>
     (function () {
+      var custInfo = window.location.protocol + "//" + window.location.host + "/customer-info";
       $.getJSON("customers.json")
         .done(function (data) {
           $.each(data, function (i, item) {
             console.dir(item);
-            var row = "<th scope=\"row\"><a href=\"/customer-info?acct=" + item.accountNumber  + "\">" + item.accountNumber + "</th>";
+            var row = "<th scope=\"row\"><a href=\"" + custInfo + "?acct=" + item.accountNumber  + "\">" + item.accountNumber + "</th>";
             row +=  "<td>" + item.firstName + "</td>";
             row +=  "<td>" + item.lastName + "</td>";
             row +=  "<td>" + item.birthDate + "</td>";
